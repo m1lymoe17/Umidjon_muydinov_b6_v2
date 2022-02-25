@@ -54,7 +54,7 @@ public class BookController {
         User userById = userRepository.getUserById(userId);
         List<Book> bookList = bookService.getBookList(userId);
         model.addAttribute("bookList", bookList);
-        String deleteBook = bookService.getDeleteBook(id);
+        bookService.getDeleteBook(id);
         model.addAttribute("user", userById);
         return "home";
     }
