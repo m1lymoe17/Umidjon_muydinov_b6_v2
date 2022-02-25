@@ -15,12 +15,25 @@ public class BookRepository {
     }
 
     public List<Book> getUserBooks(int id) {
-        String query = "select * from books b join books_customers bc on b.id = bc.book_id where user_id=" + id;
+        String query = "select * from books where user_id=" + id;
         return jdbcTemplate.query(query, (rs, rowNum) -> {
             Book book = new Book();
             book.setId(rs.getInt(1));
             book.setTitle(rs.getString(2));
             book.setName(rs.getString(3));
+            book.setUserId(rs.getInt(4));
+            return book;
+        });
+    }
+
+    public List<Book> getBooks() {
+        String query = "select * from books";
+        return jdbcTemplate.query(query, (rs, rowNum) -> {
+            Book book = new Book();
+            book.setId(rs.getInt(1));
+            book.setTitle(rs.getString(2));
+            book.setName(rs.getString(3));
+            book.setUserId(rs.getInt(4));
             return book;
         });
     }
@@ -28,18 +41,19 @@ public class BookRepository {
     public Book getBookById(int id) {
         String query = "select * from books where id = " + id;
         return jdbcTemplate.queryForObject(query, (rs, rowNum) -> {
-            Book user = new Book();
-            user.setId(rs.getInt(1));
-            user.setTitle(rs.getString(2));
-            user.setName(rs.getString(3));
-            return user;
+            Book book = new Book();
+            book.setId(rs.getInt(1));
+            book.setTitle(rs.getString(2));
+            book.setName(rs.getString(3));
+            book.setUserId(rs.getInt(4));
+            return book;
         });
     }
 
     public boolean saveBook(Book book) {
         String query =
-                "insert into books(title, name) " +
-                "values ('" + book.getTitle() + "','" + book.getName() + "')";
+                "insert into books(title, name,user_id) " +
+                "values ('" + book.getTitle() + "','" + book.getName() + "',user_id=" + book.getId() + ")";
         return jdbcTemplate.update(query) > 0;
     }
 

@@ -24,6 +24,7 @@ public class UserRepository {
             user.setUsername(rs.getString(4));
             user.setPassword(rs.getString(5));
             user.setCustomer(rs.getBoolean(6));
+            user.setBio(rs.getString(7));
             return user;
         });
     }
@@ -38,28 +39,23 @@ public class UserRepository {
             user.setUsername(rs.getString(4));
             user.setPassword(rs.getString(5));
             user.setCustomer(rs.getBoolean(6));
+            user.setBio(rs.getString(7));
             return user;
         });
     }
 
     public boolean saveUser(User user) {
         String query =
-                "insert into users(first_name, last_name, username, password) " +
+                "insert into users(first_name, last_name, username, password,bio) " +
                 "values ('" + user.getFirstName() + "','" + user.getLastName() +
                 "','" + user.getUsername() +
-                "','" + user.getPassword() + "')";
+                "','" + user.getPassword() +
+                "','" + user.getBio() + "')";
         return jdbcTemplate.update(query) > 0;
     }
 
     public boolean deleteUser(Integer id) {
         String query = "delete from users where id = " + id;
-        return jdbcTemplate.update(query) > 0;
-    }
-
-    public boolean editUser(User user) {
-        String query =
-                "update users set first_name = '" + "', last_name= '" + user.getLastName() + "'," +
-                "username = '" + user.getUsername() + "',password = '" + user.getPassword() + "'";
         return jdbcTemplate.update(query) > 0;
     }
 
@@ -75,6 +71,7 @@ public class UserRepository {
             user.setUsername(rs.getString(4));
             user.setPassword(rs.getString(5));
             user.setCustomer(rs.getBoolean(6));
+            user.setBio(rs.getString(7));
             return user;
         });
         if (query.size() > 0) {
