@@ -55,7 +55,7 @@ public class BookRepository {
     public boolean saveBook(Book book) {
         String query =
                 "insert into books(title, name,user_id) " +
-                "values ('" + book.getTitle() + "','" + book.getName() + "',user_id=" + book.getId() + ")";
+                "values ('" + book.getTitle() + "','" + book.getName() + "'," + book.getUserId() + ")";
         return jdbcTemplate.update(query) > 0;
     }
 

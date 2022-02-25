@@ -24,9 +24,7 @@
             <label>Name</label>
             <input type="text" class="form-control" value="${book.name}" name="name" placeholder="Enter book name">
         </div>
-
-        <input type="hidden" name="userId" value="${userId}">
-
+        <input type="hidden" name="userId" value="${book.userId}">
         <button type="submit" class="btn btn-success" value="save" style="margin-top:30px">Save</button>
     </form>
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @Component
 public class BookService {
     private BookRepository bookRepository;
@@ -38,12 +39,13 @@ public class BookService {
                 return "Successfully edited!";
             }
             return "Could not edit!";
-        }
-        boolean b = bookRepository.saveBook(book);
-        if (b) {
-            return "Successfully saved!";
         } else {
-            return "Could not save!";
+            boolean b = bookRepository.saveBook(book);
+            if (b) {
+                return "Successfully saved!";
+            } else {
+                return "Could not save!";
+            }
         }
     }
 }

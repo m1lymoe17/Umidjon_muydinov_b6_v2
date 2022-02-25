@@ -12,7 +12,7 @@
 <div class="container">
     <br>
     <c:if test="${user.customer==true}">
-        <a class="btn btn-success" href="<c:url value="/books/get-form"/>">+Add Book</a>
+        <a class="btn btn-success" href="<c:url value="/books/get-save/${user.id}"/>">+Add Book</a>
         <hr>
     </c:if>
 
@@ -32,19 +32,16 @@
         <c:forEach var="books" items="${bookList}">
             <tr>
                 <td>
-                    <a href=""
-                       style="text-decoration: none"> ${books.name}</a>
-
+                    <a
+                            style="text-decoration: none"> ${books.name}</a>
                 </td>
-                <td>
-                    <a href=""
-                       style="text-decoration: none"> ${books.title}</a>
-
+                <td><a
+                        style="text-decoration: none"> ${books.title}</a>
                 </td>
-                <input type="hidden" name="userId" value="${user.id}">
+
                 <c:if test="${user.customer==true}">
                     <td><a class="btn btn-primary"
-                           href="<c:url value="/books/get-form/${books.id}"/>"><i
+                           href="<c:url value="/books/get-edit/${books.id}"/>"><i
                             class="fas fa-edit"></i></a></td>
                     <td><a class="btn btn-danger" href="<c:url value="/books/delete/${books.id}"/>"> <i
                             class="fas fa-trash"></i> </a>
