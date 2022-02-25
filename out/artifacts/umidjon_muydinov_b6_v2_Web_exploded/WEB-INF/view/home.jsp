@@ -12,7 +12,7 @@
 <div class="container">
     <br>
     <c:if test="${user.customer==true}">
-        <a class="btn btn-success" href="<c:url value="/books/save"/>">+Add Book</a>
+        <a class="btn btn-success" href="<c:url value="/books/get-form"/>">+Add Book</a>
         <hr>
     </c:if>
 
@@ -41,10 +41,10 @@
                        style="text-decoration: none"> ${books.title}</a>
 
                 </td>
-                <input type="hidden" value="${user.id}">
+                <input type="hidden" name="userId" value="${user.id}">
                 <c:if test="${user.customer==true}">
                     <td><a class="btn btn-primary"
-                           href="<c:url value="/books/save/${books.id}"/>"><i
+                           href="<c:url value="/books/get-form/${books.id}"/>"><i
                             class="fas fa-edit"></i></a></td>
                     <td><a class="btn btn-danger" href="<c:url value="/books/delete/${books.id}"/>"> <i
                             class="fas fa-trash"></i> </a>
