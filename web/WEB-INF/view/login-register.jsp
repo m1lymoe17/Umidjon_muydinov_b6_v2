@@ -343,9 +343,6 @@
                 <label>
                     <input type="text" name="password" placeholder="Password">
                 </label>
-                <label>
-                    <input type="text" name="bio" placeholder="Bio">
-                </label>
                 <button type="submit" class="submit">Sign Up</button>
             </div>
         </div>

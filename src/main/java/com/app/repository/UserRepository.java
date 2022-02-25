@@ -48,11 +48,10 @@ public class UserRepository {
 
     public boolean saveUser(User user) {
         String query =
-                "insert into users(first_name, last_name, username, password,bio) " +
+                "insert into users(first_name, last_name, username, password) " +
                 "values ('" + user.getFirstName() + "','" + user.getLastName() +
                 "','" + user.getUsername() +
-                "','" + user.getPassword() +
-                "','" + user.getBio() + "')";
+                "','" + user.getPassword() + "')";
         return jdbcTemplate.update(query) > 0;
     }
 
