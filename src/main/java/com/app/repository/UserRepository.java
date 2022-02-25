@@ -3,9 +3,11 @@ package com.app.repository;
 import com.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class UserRepository {
     private JdbcTemplate jdbcTemplate;
 
@@ -61,8 +63,8 @@ public class UserRepository {
 
     public User getLoggedUser(User loggedUser) {
         String sqlQuery =
-                "select * from users where username = '" + loggedUser.getUsername() + "' and password = '" + loggedUser.getPassword() + "'";
-
+                "select * " +
+                "from users where username like '" + loggedUser.getUsername() + "' and password like '" + loggedUser.getPassword() + "';";
         List<User> query = jdbcTemplate.query(sqlQuery, (rs, rowNum) -> {
             User user = new User();
             user.setId(rs.getInt(1));

@@ -1,7 +1,12 @@
 package com.app.controller;
 
+
+import com.app.model.Book;
 import com.app.model.User;
+import com.app.repository.BookRepository;
 import com.app.repository.UserRepository;
+import com.app.service.UserService.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,21 +15,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class LoginController {
-    private UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    BookRepository bookRepository;
+    @Autowired
+    BookService bookService;
 
     @GetMapping()
-    public String getLogin(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        for (User user : userRepository.getUserList()) {
-            if (session.getAttribute("user").equals(user.getId())) {
-                model.addAttribute("user", user);
-                return "home";
-            }
-        }
+    public String getLogin() {
         return "login-register";
     }
 
@@ -36,6 +40,8 @@ public class LoginController {
             session.setAttribute("name", loggedUser.getId());
             session.setMaxInactiveInterval(3600);
             model.addAttribute("user", loggedUser);
+            List<Book> bookList = bookService.getBookList(loggedUser.getId());
+            model.addAttribute("bookList", bookList);
             return "home";
         }
         model.addAttribute("Something wrong");
