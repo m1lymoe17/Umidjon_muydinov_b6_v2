@@ -1,0 +1,30 @@
+1) @QUALIFIER -  misol uchun har xil configuratsiya qilingan 2ta
+yoki undan ortoq bean kerak bo'lishi mumkin.
+Ana endi aynan shu paytda biz @Qualifier annotatsiyasi orqali ularni ajratib olishimiz mumkin, ya'ni bizga aynan qaysi @bean kerakligini
+biz Spring @Qualifier annotatsiyasiga o'rnatilgan nomdan ajratib oladi.
+
+@SCOPE - @SCOPE annotatsiyasi orqali biz yaratayotgan @bean larning qancha muddat yashashi, va qaysi vaqt oralig'ida yashashi kerakligini ko'rsatib ketishimiz mumkin.
+Agar biz @bean yaratib ammo unga @SCOPE annotatsiyasini qo'ymasak uni default value-si (singleton) ya'ni, butun IoC container uchun bitta @bean yaratiladi.
+Shuningdek bu annotatsiyasini o'zining 5-ta qabul qiladigan qiymatlari bor, ular:
+1 singleton - bu value @scope annotatsiyasini default value si hisoblanib, container ga kelgan har bir request ga xuddi o'sha biz yaratgan birgina @bean qaytariladi
+va u bizning dasturimizni oxirida container da saqlanadi.
+
+2)
+@ModelAttribute - bu annotatsiyasi birir bir qiymatni modelga biror bir noma orqali birlashtirishga ya'ni 'bind' qilib, keyin esa bu modelni wev-view uzatib yuboradi
+Spring MVC da bu holat - DATA binding deb nomlanadi. Ana endi biz bu annotatsiyasini ishlatishga keladigan bo'lsak, @ModelAttribute annotatsiyasi asosan 2 xil
+tarzda ishlatiladi. Birinchisi method ni parametri orqalib kirib kelganida, oyki method level da.
+
+
+3)@RequestParam - bu annotatsiya biror bir url ga user kiritgan yoki shunchaki front-end dan berib yuborilgan http so'rovni parametrlarini extract ya'ni ajratib olish
+uchun qo'llaniladi. Masalan biz qandaydir ish bajarmoqchimiz va buning uchun biz request yuborishimiz kerak bo'ladi ammo shu ishni bajarish uchun api bizdan qandaydir
+ma'lumotlarni kiritishimizni kutadi va biz shu ma'lumotlarni aynan @RequestParam annotatsiyasi orqali back-end da ushlab olib bu ma'lumotlardan kelib chiqqan holda
+http request ni ustida amallar bajarib client ga response qaytarishimiz mumkin, bo'ladi, @RequestParam annotatsiyasini yana bir yaxshi tarafi shundan iboratki
+biz defaultValue parametri client dan kerakli ma'lumot kiritilmagan holatda da ham default value ni olib ishlatib ketsak bo'ladi, va bu holatda client ga
+Bad Request 400 bormaydi. Shuningdek required = false parametrini o'rnatish orqali biz bu request paramga muhimlik
+darajasini berib ketishimiz ham mumkin bo'ladi
+
+@PathVariable - @RequestParam http request dan qiymatlarni oladigan bo'lsa, @PathVariable annotatsiyasi esa URI dan qiymatlarni ajratib olish uchun(to extract) qo'lla-
+niladi.
+
+4)Inversion of Control (IoC) - bu qisqa qilib aytganda @Bean larni yaratish va ularni instantiate qilish jarayonini Spring frameworki o'z zimmasiga olishidir.
+Bu holatda dasturchi qilishi kerak bo'lgan birgina ish esa bu Spring IoC (container) ga shunchaki configuration larni ko'rsatishdir.
